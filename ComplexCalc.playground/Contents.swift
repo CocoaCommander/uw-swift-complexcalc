@@ -15,8 +15,34 @@ class Calculator {
         return total
     }
     
+    func add(lhs : (Int, Int), rhs : (Int, Int)) -> (Int, Int) {
+        return (lhs.0 + rhs.0, lhs.1 + rhs.1)
+    }
+    
+    func add(lhs : [String : Int], rhs : [String : Int]) -> [String : Int] {
+        let x = lhs["x"]! + rhs["x"]!
+        let y = lhs["y"]! + rhs["y"]!
+        return [
+            "x" : x,
+            "y" : y
+        ]
+    }
+    
     func subtract(lhs x : Int, rhs y : Int) -> Int {
         return x - y
+    }
+    
+    func subtract(lhs : (Int, Int), rhs : (Int, Int)) -> (Int, Int) {
+        return (lhs.0 - rhs.0, lhs.1 - rhs.1)
+    }
+    
+    func subtract(lhs : [String : Int], rhs : [String : Int]) -> [String : Int] {
+        let x = lhs["x"]! - rhs["x"]!
+        let y = lhs["y"]! - rhs["y"]!
+        return [
+            "x" : x,
+            "y" : y
+        ]
     }
     
     func multiply(lhs x : Int, rhs y : Int) -> Int {
@@ -90,16 +116,16 @@ calc.mathOp(args: [1, 2, 3, 4, 5], beg: 0, op: { $0 + $1 }) == 15
 calc.mathOp(args: [1, 1, 1, 1, 1], beg: 1, op: { $0 * $1 }) == 1
     // this is (((((1 op 1) op 1) op 1) op 1) op 1)
 
-//let p1 = (5, 5)
-//let p2 = (12, -27)
-//let p3 = (-4, 4)
-//let p4 = (0, 0)
-//calc.add(lhs: p1, rhs: p2) == (17, -22)
-//calc.subtract(lhs: p1, rhs: p2) == (-7, 32)
-//calc.add(lhs: p4, rhs: p4) == (0, 0)
-//calc.add(lhs: p3, rhs: p4) == (-4, 4)
-//
-//let pd1 = ["x": 5, "y": 5]
-//let pd2 = ["x": -4, "y": 4]
-//calc.add(lhs: pd1, rhs: pd2) == ["x": 1, "y": 9]
-//calc.subtract(lhs: pd1, rhs: pd2) == ["x": 9, "y": 1]
+let p1 = (5, 5)
+let p2 = (12, -27)
+let p3 = (-4, 4)
+let p4 = (0, 0)
+calc.add(lhs: p1, rhs: p2) == (17, -22)
+calc.subtract(lhs: p1, rhs: p2) == (-7, 32)
+calc.add(lhs: p4, rhs: p4) == (0, 0)
+calc.add(lhs: p3, rhs: p4) == (-4, 4)
+
+let pd1 = ["x": 5, "y": 5]
+let pd2 = ["x": -4, "y": 4]
+calc.add(lhs: pd1, rhs: pd2) == ["x": 1, "y": 9]
+calc.subtract(lhs: pd1, rhs: pd2) == ["x": 9, "y": 1]
