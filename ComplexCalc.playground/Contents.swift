@@ -7,6 +7,14 @@ class Calculator {
         return x + y
     }
     
+    func add(_ nums : [Int]) -> Int {
+        var total : Int = 0
+        for value : Int in nums {
+            total += value
+        }
+        return total
+    }
+    
     func subtract(lhs x : Int, rhs y : Int) -> Int {
         return x - y
     }
@@ -15,8 +23,39 @@ class Calculator {
         return x * y
     }
     
+    func multiply(_ nums : [Int]) -> Int {
+        var total : Int = 1
+        for value : Int in nums {
+            total *= value
+        }
+        return total
+    }
+    
+    
     func divide(lhs x : Int, rhs y : Int) -> Int {
         return x / y
+    }
+    
+    func mathOp(lhs : Int, rhs : Int, op : (Int, Int) -> Int) -> Int {
+        return op(lhs, rhs)
+    }
+    
+    func count(_ nums : [Int]) -> Int {
+        return nums.count
+    }
+    
+    func avg(_ nums : [Int]) -> Int {
+        let length = self.count(nums)
+        let total = add(nums)
+        return total / length
+    }
+    
+    func mathOp(args nums : [Int], beg : Int, op : (Int, Int) -> Int) -> Int {
+        var total : Int = beg
+        for value : Int in nums {
+            total = op(total, value)
+        }
+        return total
     }
 }
 
@@ -31,7 +70,7 @@ calc.subtract(lhs: 2, rhs: 2) == 0
 calc.multiply(lhs: 2, rhs: 2) == 4
 calc.divide(lhs: 2, rhs: 2) == 1
 
-calc.mathOp(lhs: 5, rhs: 5, op: { (lhs: Int, rhs: Int) -> Int in (lhs + rjs) + (lhs * rhs) }) == 35
+calc.mathOp(lhs: 5, rhs: 5, op: { (lhs: Int, rhs: Int) -> Int in (lhs + rhs) + (lhs * rhs) }) == 35
     // This style is one way of writing an anonymous function
 calc.mathOp(lhs: 10, rhs: -5, op: { ($0 + $1) + ($0 - $1) }) == 20
     // This is the second, more terse, style; either works
@@ -51,16 +90,16 @@ calc.mathOp(args: [1, 2, 3, 4, 5], beg: 0, op: { $0 + $1 }) == 15
 calc.mathOp(args: [1, 1, 1, 1, 1], beg: 1, op: { $0 * $1 }) == 1
     // this is (((((1 op 1) op 1) op 1) op 1) op 1)
 
-let p1 = (5, 5)
-let p2 = (12, -27)
-let p3 = (-4, 4)
-let p4 = (0, 0)
-calc.add(lhs: p1, rhs: p2) == (17, -22)
-calc.subtract(lhs: p1, rhs: p2) == (-7, 32)
-calc.add(lhs: p4, rhs: p4) == (0, 0)
-calc.add(lhs: p3, rhs: p4) == (-4, 4)
-
-let pd1 = ["x": 5, "y": 5]
-let pd2 = ["x": -4, "y": 4]
-calc.add(lhs: pd1, rhs: pd2) == ["x": 1, "y": 9]
-calc.subtract(lhs: pd1, rhs: pd2) == ["x": 9, "y": 1]
+//let p1 = (5, 5)
+//let p2 = (12, -27)
+//let p3 = (-4, 4)
+//let p4 = (0, 0)
+//calc.add(lhs: p1, rhs: p2) == (17, -22)
+//calc.subtract(lhs: p1, rhs: p2) == (-7, 32)
+//calc.add(lhs: p4, rhs: p4) == (0, 0)
+//calc.add(lhs: p3, rhs: p4) == (-4, 4)
+//
+//let pd1 = ["x": 5, "y": 5]
+//let pd2 = ["x": -4, "y": 4]
+//calc.add(lhs: pd1, rhs: pd2) == ["x": 1, "y": 9]
+//calc.subtract(lhs: pd1, rhs: pd2) == ["x": 9, "y": 1]
