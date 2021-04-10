@@ -3,7 +3,21 @@ print("Welcome back to the UW Calculator")
 // Your job is to fill out Calculator so all the expressions
 // below both compile and return "true"
 class Calculator {
+    func add(lhs x : Int, rhs y : Int) -> Int {
+        return x + y
+    }
     
+    func subtract(lhs x : Int, rhs y : Int) -> Int {
+        return x - y
+    }
+    
+    func multiply(lhs x : Int, rhs y : Int) -> Int {
+        return x * y
+    }
+    
+    func divide(lhs x : Int, rhs y : Int) -> Int {
+        return x / y
+    }
 }
 
 let calc = Calculator()  // Don't change this declaration name; it's used in all the tests below
