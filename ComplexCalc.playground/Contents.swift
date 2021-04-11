@@ -89,6 +89,35 @@ let calc = Calculator()  // Don't change this declaration name; it's used in all
 
 // ====> Add your own tests here if you wish <====
 
+// more verbose tests since these calls to mathOp for args functions results in a graoh rather than
+// a numerical answer
+func testArr() {
+    var numFailed = 0
+    let a = calc.mathOp(args: [1, 2, 3], beg: 0, op: { $0 + $1 })
+    if a != 6 {
+        print("expected 6 from" +
+                " calc.mathOp(args: [1, 2, 3], beg: 0, op: { $0 + $1 }) but got \(a).")
+        numFailed += 1
+    }
+    let b = calc.mathOp(args: [1, 2, 3, 4, 5], beg: 0, op: { $0 + $1 })
+    if b != 15 {
+        print("expected 15 from" +
+            " calc.mathOp(args: [1, 2, 3, 4, 5], beg: 0, op: { $0 + $1 }) but got \(b).")
+        numFailed += 1
+    }
+    let c = calc.mathOp(args: [1, 1, 1, 1, 1], beg: 1, op: { $0 * $1 })
+    if c != 1 {
+        print("expected 1 from" +
+            " calc.mathOp(args: [1, 1, 1, 1, 1], beg: 1, op: { $0 * $1 }) but got \(c).")
+        numFailed += 1
+    }
+    print("\(3 - numFailed) out of 3 tests passed.")
+    if numFailed == 0 {
+        print("All tests passed!")
+    }
+}
+
+testArr()
 
 // ====> Do not modify code in this section <====
 calc.add(lhs: 2, rhs: 2) == 4
